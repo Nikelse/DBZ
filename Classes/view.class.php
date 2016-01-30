@@ -29,6 +29,7 @@ class View {
       <body>
         <img src='Fichiers/images/logo.jpg' /><br /><hr />
         </hr>".$contener."
+        <a> Insérer un fichier </a>
       </body>
       </html>";
     }
