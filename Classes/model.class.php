@@ -22,6 +22,14 @@ class Model {
     $RES->execute();
     return $RES->fetchAll();
   }
+
+  //list all values
+  public function List_Values($table){
+    $SQL = "select * from :table";
+    $RES = $this->PDO->prepare($SQL);
+    $RES->execute([":table" => $table]);
+    return $RES->fetchAll();
+  }
   
 }
 
