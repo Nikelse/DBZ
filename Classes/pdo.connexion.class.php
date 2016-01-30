@@ -14,7 +14,7 @@ class Pdo_Connexion {
 	private function LoadIni ($file) {
 		$ini_array = parse_ini_file($file);
 		if ((isset($ini_array['USER_db']) && !empty($ini_array['USER_db']))
-		&& (isset($ini_array['PASS_db']) && !empty($ini_array['PASS_db']))
+		&& (isset($ini_array['PASS_db']) /*&& !empty($ini_array['PASS_db'])*/)
 		&& (isset($ini_array['HOST_db']) && !empty($ini_array['HOST_db']))
 		&& (isset($ini_array['DB_db']) && !empty($ini_array['DB_db'])))
 			{
