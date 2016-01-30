@@ -32,6 +32,31 @@ class View {
       </body>
       </html>";
     }
+
+    //html table containing the table values
+    public static function TABLE_DESCRIPTION($tab){
+        ob_start(); ?>
+            <table>
+                <thead>
+                    <tr>
+                        <?php foreach($tab as $id=>$value): ?>
+                            <th><?= $id ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($tab as $id=>$v): ?>
+                        <tr>
+                            <?php foreach($v as $id=>$value): ?>
+                                <td><?= $value ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php return ob_get_clean();
+    }
+
     
 }
 

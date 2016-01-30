@@ -23,8 +23,11 @@ $OUTPUT = NULL;
 // set the menu based on tables
 $OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
 
+// set the table description (values)
 
-
+if(isset($_GET['T'])){
+    $OUTPUT .= View::TABLE_DESCRIPTION($MODEL->List_Values($_GET['T']));
+}
 
 // output echo screen rendering 
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);

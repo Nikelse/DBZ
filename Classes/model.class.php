@@ -1,6 +1,6 @@
 <?php 
 
-/* DBZ MODELE KAMEHAMEHA */
+/* DBZ MODELE GENKIDAMA */
 
 class Model {
   
@@ -20,6 +20,12 @@ class Model {
     $SQL = "show tables";
     $RES = $this->PDO->prepare($SQL);
     $RES->execute();
+    return $RES->fetchAll();
+  }
+
+  //list all values
+  public function List_Values($table){
+    $RES = $this->PDO->Query("select * from $table");
     return $RES->fetchAll();
   }
   
