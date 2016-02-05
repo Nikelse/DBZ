@@ -28,7 +28,7 @@ class Model {
     $SQL = "SELECT * FROM ".$table;
     $RES = $this->PDO->prepare($SQL);
     $RES->execute();
-    return $RES->fetchAll();
+    return $RES->fetchAll(PDO::FETCH_ASSOC);
   }
 
 }
