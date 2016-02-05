@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* DBZ FRONTAL CONTROLLER
 ** MVC CMS for database management */
@@ -22,11 +22,11 @@ $OUTPUT = NULL;
 
 // set the menu based on tables
 $OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
+$OUTPUT .= View::AfficheTable($MODEL->List_Cont($_GET['T']));
 
 
 
-
-// output echo screen rendering 
+// output echo screen rendering
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);
 
 ?>
