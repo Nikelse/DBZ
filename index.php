@@ -20,11 +20,47 @@ require_once("Classes/view.class.php");
 // html output increment
 $OUTPUT = NULL;
 
+// if a user want to delete an entity in a table
+if(isset($_GET['d_ID'])){
+  $MODEL->DeleteEntity($_GET['d_ID'], $_GET['table'], $_GET['champ']);
+}
+
+if(isset($_POST['form_db'])){
+  if($_POST['db_name'] != null){
+    $MODEL->ChangeDB($_POST['db_name']);
+  }
+}
+
+// add a new entity
+if(isset($_POST['add'])){
+  
+  $i = 0;
+  $sizeOfTab = count($_POST) - 2;
+  $finalTab = [];
+  
+  foreach ($_POST as $key => $value) {
+    if($i === $sizeOfTab){
+      break;
+    }
+    else {
+      $finalTab[$key] = $value;
+    }
+    $i++;
+  }
+  
+  $MODEL->AddEntity($finalTab, $_POST['T']);
+}
+
+// list of databases
+$OUTPUT .= View::ListDatabases($MODEL->GetDatabasesList());
+
 // set the menu based on tables
 $OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
 
-
-
+// if the user has clicked on a table link
+if(isset($_GET['T'])){
+  $OUTPUT .= View::DataListTable($MODEL->Name_DB(), $_GET['T'], $MODEL->ListEntitiesTable($_GET['T']));
+}
 
 // output echo screen rendering 
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);
