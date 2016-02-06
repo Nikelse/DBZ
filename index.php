@@ -23,7 +23,7 @@ $output = NULL;
 // set the menu based on tables
 if(count($_GET) >= 1)
 {
-	$ordre = ["", "B", "T"];
+	$ordre = ["", "B", "T", "I", "A"];
 	$lien = "";
 	for($i=0; $i != count($_GET); $i++)
 	{
@@ -40,10 +40,17 @@ if(isset($_GET['B']) || isset($_GET['T']))
 {
 	$model->Use_BDD($_GET['B']);
 }
-
-if(isset($_GET['T']))
+if(isset($_GET['A']))
 {
-	$output .= View::MenuDonnee($_GET['B'], $_GET['T'], $model->List_Donnee());
+	if($_GET['A'] == "S")
+	{
+		$model->Suppr_Donnee($_GET['T'], $_GET['I']);
+		header("Location: index.php?B=".$_GET['B']."&T=".$_GET['T']);
+	}
+}
+elseif(isset($_GET['T']))
+{
+	$output .= View::MenuDonnee($_GET['B'], $_GET['T'], $model->List_Donnee($_GET['T']));
 }
 elseif(isset($_GET['B']))
 {

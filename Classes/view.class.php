@@ -41,17 +41,21 @@ class View
   {
     $head = '<tr>';
     $body = "";
-    $i = 1;
     foreach($array_donnee as $num_ligne => $ligne)
     {
-      $body .= '<tr>';
-      foreach($ligne as $k => $v)
+      if($num_ligne !== "PRIMARY")
       {
-        $head .= ($i == 1)? '<th>'.$k.'</th>': "";
-        $body .= '<td>'.$v.'</td>';
+        $body .= '<tr>';
+        foreach($ligne as $k => $v)
+        {
+            $head .= ($num_ligne == 0)? '<th>'.$k.'</th>' : "";
+            $body .= '<td>'.$v.'</td>';
+        }
+        $id = $ligne[$array_donnee['PRIMARY']];
+        $head .= ($num_ligne == 0)? '<th>Supprimer</th>' : "";
+        $body .= '<td><a href="?B='.$db_name.'&T='.$table.'&I='.$id.'&A=S">X</a></td>';
+        $body .= '</tr>';
       }
-      $i++;
-      $body .= '</tr>';
     }
     $head .= '</tr>';
 

@@ -47,11 +47,32 @@ class Model
   }
 
   // List donnee
-  public function List_Donnee()
+  public function List_Donnee($table)
   {
-    $sql = "select * FROM ".$_GET['T'];
+    $sql = "select * FROM ".$table;
     $res = $this->_pdo->query($sql);
-    return $res->fetchAll(PDO::FETCH_ASSOC);
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    $data['PRIMARY'] = $this->Get_PK($table);
+    //var_dump($data);
+    return $data;
+  }
+
+  public function Suppr_Donnee($table, $id)
+  {
+    $PK = $this->Get_PK($table);
+    $sql = 'DELETE FROM '.$table.' WHERE '.$PK.' = :id';
+    $req = $this->_pdo->prepare($sql);
+    $req->execute([":id" => $id]);
+    return $req->rowCount();
+  }
+
+  public function Get_PK($table)
+  {
+    $sql = 'show index from '.$table.' where Key_name = "PRIMARY"';
+    $req = $this->_pdo->prepare($sql);
+    $req->execute();
+    $data = $req->fetch(PDO::FETCH_ASSOC);
+    return $data['Column_name'];
   }
 }
 
