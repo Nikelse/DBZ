@@ -3,10 +3,10 @@
 /* dbz global setting  */
 
 // current application name
-$CONFIG['MODULE_NAME'] = "DBZ Database Manager";
+$config['MODULE_NAME'] = "DBZ Database Manager";
 
 // database ini file path
-$CONFIG['DB_INI_FILE'] = "Config/ID-VARS-DB.ini";
+$config['DB_INI_FILE'] = "Config/ID-VARS-DB.ini";
 
 
 
