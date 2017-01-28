@@ -20,11 +20,16 @@ require_once("Classes/view.class.php");
 // html output increment
 $OUTPUT = NULL;
 
+// list DB menu
+$OUTPUT .= View::MenuDB ($MODEL->List_DB());
+
 // set the menu based on tables
-$OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
-
-
-
+if (isset($_GET['DB'])) {
+	$OUTPUT .= View::MenuTable ($MODEL->Name_DB(), $MODEL->List_Table());
+	if (isset($_GET['TB'])) {
+		$OUTPUT .= View::MenuField ($_GET['TB'], $MODEL->List_Field($_GET['TB']));
+		}
+	}
 
 // output echo screen rendering 
 View::HTML($CONFIG['MODULE_NAME'], $OUTPUT);

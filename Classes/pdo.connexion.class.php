@@ -15,11 +15,11 @@ class Pdo_Connexion {
 		$ini_array = parse_ini_file($file);
 		if ((isset($ini_array['USER_db']) && !empty($ini_array['USER_db']))
 		&& (isset($ini_array['PASS_db']) && !empty($ini_array['PASS_db']))
-		&& (isset($ini_array['HOST_db']) && !empty($ini_array['HOST_db']))
-		&& (isset($ini_array['DB_db']) && !empty($ini_array['DB_db'])))
+		&& (isset($ini_array['HOST_db']) && !empty($ini_array['HOST_db'])))
 			{
 			try {
-				$dbh = new PDO("mysql:host=".$ini_array['HOST_db'].";dbname=".$ini_array['DB_db'], $ini_array['USER_db'], $ini_array['PASS_db']);
+				$DBSELECTED = (isset($_GET['DB'])) ? ";dbname=".$_GET['DB']: null;
+				$dbh = new PDO("mysql:host=".$ini_array['HOST_db'].$DBSELECTED, $ini_array['USER_db'], $ini_array['PASS_db']);
 				$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 				return $dbh;
 				}
