@@ -8,17 +8,18 @@ class View {
     
 	// menu list of table link
 	public static function MenuDB ($array_db) {
-		$menu = null;
+		$menu = "<div id='menudb'>";
 	    foreach ($array_db as $K => $DB) {
 			$menu .= " <a href='?DB=".$DB[0]."'> ".strtoupper($DB[0])." /</a>";
       }
-	  $menu .="<HR />";
+	  $menu .="<HR /></div>";
 	  return $menu;
 	}
 	
     // menu list of table link
     public static function MenuTable ($db_name, $array_table) {
-      $menu = "<div style='width: 20%; height: 75%; overflow: auto;'><b>Database : ".$db_name."</b><hr />";
+      $menu = "<div id='menutable'>
+	  <b>Database : ".$db_name."</b><hr />";
       
       foreach ($array_table as $K => $TABLE) {
         $menu .= " <li><a href='?DB=".$db_name."&TB=".$TABLE[0]."'>".strtoupper($TABLE[0])."</a></li>";
@@ -31,7 +32,7 @@ class View {
 	
 	// field item
 	public static function MenuField ($tb_name, $array_field) {
-		$menu = "<div><b>Table : ".$tb_name."</b><hr />";
+		$menu = "<div id='menufield'><b>Table : ".$tb_name."</b><hr />";
 		
 		foreach ($array_field as $K => $FIELD) {
 			$menu .= "<li>".strtoupper($FIELD[0])."</li>";
@@ -51,7 +52,7 @@ class View {
       </head>
       <body>
         <img src='Fichiers/images/logo.jpg' /><br /><hr />
-        </hr>".$contener."
+        </hr><div class='container'>".$contener."</div>
       </body>
       </html>";
     }

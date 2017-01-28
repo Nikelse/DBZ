@@ -1,1 +1,24 @@
+.container {
+    display: inline-flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
 
+#menudb {
+	width: 100%;
+	}
+	
+#menutable {
+	display: inline-flex;
+	flex-direction: column;
+	width: 25%;
+	overflow: auto;
+}
+
+#menufield {
+	display: flex;
+	flex-direction: column;
+	width: 74%;
+	background-color: #eee;
+	padding: 2px;
+}
